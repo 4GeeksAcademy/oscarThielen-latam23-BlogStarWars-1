@@ -12,6 +12,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
+			],
+			favorites: [
+
 			]
 		},
 		actions: {
@@ -37,8 +40,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+			addFavorites: (name  ) => {
+				const store = getStore()
+				console.log(name)
+				setStore({favorites:[...store.favorites ,name]})
+			},
+			removeFavorite: (name) => {
+				const store = getStore();
+				const updatedFavorites = store.favorites.filter((favorite) => favorite !== name);
+				setStore({ favorites: updatedFavorites });
+			  }
+			
 		}
+		
 	};
 };
 
